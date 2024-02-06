@@ -48,6 +48,17 @@ main {
   border: thin solid black;
   border-radius: 8px;
   outline: none;
-  padding: 10px 20px;
+  padding: 0.5em 1em;
   cursor: pointer;
+  color: black;
+}
+
+@media (width < 600px) {
+  .header {
+    padding: 2em 1em;
+  }
+
+  .btn {
+    font-size: 0.8rem;
+  }
 }
