@@ -8,11 +8,26 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <canvas class="target"></canvas>
-    <div>
-      <button id="selection" class="btn">Selection Sort</button>
-      <button id="bubble" class="btn">Bubble Sort</button>
-      <button id="shuffle" class="btn">Shuffle</button>
-    </div>
+    <header class="header">
+      <ul>
+        <li>
+          <h1>Sorting Algorithms</h1>
+        </li>
+        <li>
+          <div class="range-container">
+            <label for="speed">Speed</label>
+            <input type="range" name="speed" id="" />
+          </div>
+        </li>
+      </ul>
+    </header>
+    <main>
+      <canvas></canvas>
+      <div>
+        <button id="selection" class="btn">Selection Sort</button>
+        <button id="bubble" class="btn">Bubble Sort</button>
+        <button id="shuffle" class="btn">Shuffle</button>
+      </div>
+    </main>
   </body>
 </html>

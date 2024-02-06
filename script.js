@@ -1,14 +1,16 @@
 const bubbleBtn = document.querySelector("#bubble");
 const selectionBtn = document.querySelector("#selection");
 const shuffleBtn = document.querySelector("#shuffle");
+const rangeInput = document.querySelector("input");
 
-const canvas = document.querySelector(".target");
+const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
-const screenWidth = window.innerWidth;
+const CANVAS_WIDTH = window.innerWidth < 600 ? window.innerWidth : window.innerWidth * 0.8;
+const CANVAS_HEIGHT = 600;
 
-canvas.width = screenWidth < 600 ? screenWidth : 600;
-canvas.height = 600;
+canvas.width = CANVAS_WIDTH;
+canvas.height = CANVAS_HEIGHT;
 
 let items = [];
 
@@ -24,8 +26,10 @@ class Item {
 }
 
 const ITEM_COUNT = Math.floor(canvas.width / (Item.width + 1));
-const MAX_VALUE = 500;
-const DELAY = 30;
+const MAX_VALUE = Math.floor(CANVAS_HEIGHT * (5 / 6));
+var DELAY = 50;
+
+var CANCEL = false;
 
 function setup() {
   for (let i = 0; i < ITEM_COUNT; i++) {
@@ -48,7 +52,25 @@ function draw() {
   }
 }
 
+function swap(i, j) {
+  const temp = items[i].value;
+  items[i].value = items[j].value;
+  items[j].value = temp;
+}
+
+function cancel() {
+  for (let item of items) {
+    item.color = "#000";
+  }
+  draw();
+}
+
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 function shuffle() {
+  CANCEL = true;
   for (let i = 0; i < ITEM_COUNT; i++) {
     const randomIndex = Math.floor(Math.random() * ITEM_COUNT);
     swap(i, randomIndex);
@@ -59,13 +81,18 @@ function shuffle() {
 async function bubbleSort() {
   for (let i = 0; i < ITEM_COUNT - 1; i++) {
     for (let j = 0; j < ITEM_COUNT - i - 1; j++) {
+      if (CANCEL) {
+        CANCEL = false;
+        cancel();
+        return;
+      }
       await delay(DELAY);
-      items[j].color = "#0f0"
+      items[j].color = "#0f0";
       if (items[j].value > items[j + 1].value) {
         swap(j, j + 1);
       }
       draw();
-      items[j].color = "#000"
+      items[j].color = "#000";
     }
   }
   draw();
@@ -76,6 +103,11 @@ async function selectionSort() {
     items[i].color = "#f00";
     let min = i;
     for (let j = i; j < ITEM_COUNT; j++) {
+      if (CANCEL) {
+        CANCEL = false;
+        cancel();
+        return;
+      }
       await delay(DELAY);
       if (j !== i) items[j].color = "#ff0";
       draw();
@@ -94,25 +126,17 @@ async function selectionSort() {
   draw();
 }
 
-function swap(i, j) {
-  const temp = items[i].value;
-  items[i].value = items[j].value;
-  items[j].value = temp;
-}
-
-function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 function main() {
   setup();
   draw();
 
   bubbleBtn.addEventListener("click", bubbleSort);
-
   selectionBtn.addEventListener("click", selectionSort);
-
   shuffleBtn.addEventListener("click", shuffle);
+
+  rangeInput.addEventListener("input", (e) => {
+    DELAY = 100 - e.target.value;
+  });
 }
 
 main();
