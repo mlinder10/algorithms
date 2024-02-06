@@ -1,0 +1,29 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.target {
+    border: thin solid black;
+}
+
+.btn {
+    font-size: 1.2rem;
+    border: thin solid black;
+    border-radius: 8px;
+    outline: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
