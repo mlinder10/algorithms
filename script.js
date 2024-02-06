@@ -4,7 +4,10 @@ const shuffleBtn = document.querySelector("#shuffle");
 
 const canvas = document.querySelector(".target");
 const ctx = canvas.getContext("2d");
-canvas.width = 600;
+
+const screenWidth = window.innerWidth;
+
+canvas.width = screenWidth < 600 ? screenWidth : 600;
 canvas.height = 600;
 
 let items = [];
