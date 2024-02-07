@@ -29,11 +29,60 @@ header ul {
   list-style: none;
 }
 
+.controls {
+  display: flex;
+  gap: 8em;
+  align-items: center;
+}
+
 .range-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5em;
+}
+
+.sort-options {
+  position: relative;
+  width: 120px;
+}
+
+.dropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: #ddd;
+  border-radius: 8px;
+  width: 150%;
+  right: 0;
+  top: 150%;
+  overflow: hidden;
+
+  opacity: 0;
+  pointer-events: none;
+  translate: 0 -20px;
+  transition: 0.3s ease-out;
+}
+
+.sort-options:hover .dropdown {
+  opacity: 1;
+  pointer-events: all;
+  translate: 0 0;
+}
+
+.drop-element {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5em 1em;
+  border-bottom: thin solid #aaa;
+}
+
+.drop-element:last-child {
+  border-bottom: none;
 }
 
 main {
