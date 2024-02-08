@@ -92,12 +92,18 @@ main {
   padding-bottom: 2em;
 }
 
+.btn-container {
+  display: flex;
+  gap: 2em;
+}
+
 .btn {
   font-size: 1.2rem;
   border: thin solid black;
   border-radius: 8px;
   outline: none;
-  padding: 0.5em 1em;
+  padding-block: 0.5em;
+  width: 6em;
   cursor: pointer;
   color: black;
 }

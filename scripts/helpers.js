@@ -3,6 +3,7 @@ import {
   selectionOption,
   bubbleOption,
   mergeOption,
+  quickOption,
   currentOption,
   SORTS,
 } from "./constants.js";
@@ -26,6 +27,10 @@ function handleOptionChange() {
   mergeOption.addEventListener("click", (e) => {
     currentOption.innerHTML = "Merge Sort";
     setCurrentSort(SORTS.MERGE);
+  });
+  quickOption.addEventListener("click", (e) => {
+    currentOption.innerHTML = "Quick Sort";
+    setCurrentSort(SORTS.QUICK);
   });
 }
 

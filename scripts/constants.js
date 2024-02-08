@@ -6,6 +6,7 @@ export const currentOption = document.querySelector(".current-option");
 export const selectionOption = document.querySelector("#selection-option");
 export const bubbleOption = document.querySelector("#bubble-option");
 export const mergeOption = document.querySelector("#merge-option");
+export const quickOption = document.querySelector("#quick-option");
 
 export const canvas = document.querySelector("canvas");
 export const ctx = canvas.getContext("2d");

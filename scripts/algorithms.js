@@ -157,6 +157,32 @@ export async function mergeSort(items) {
   draw(items);
 }
 
+export async function quicksort(items, low = 0, high = items.length - 1) {
+  if (low < high) {
+    const pivotIndex = await partition(items, low, high);
+    quicksort(items, low, pivotIndex - 1);
+    quicksort(items, pivotIndex + 1, high);
+  }
+  draw(items);
+}
+
+async function partition(items, low, high) {
+  const pivot = items[high];
+  let i = low - 1;
+
+  for (let j = low; j < high; j++) {
+    await delay(DELAY);
+    draw(items);
+    if (items[j].value < pivot.value) {
+      i++;
+      swap(items, i, j);
+    }
+  }
+
+  swap(items, i + 1, high);
+  return i + 1;
+}
+
 export class Item {
   constructor(value) {
     this.value = value;

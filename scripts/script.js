@@ -2,6 +2,7 @@ import {
   bubbleSort,
   selectionSort,
   mergeSort,
+  quicksort,
   shuffle,
   draw,
   setup,
@@ -40,6 +41,9 @@ function main() {
         break;
       case SORTS.MERGE:
         mergeSort(items);
+        break;
+      case SORTS.QUICK:
+        quicksort(items);;
         break;
     }
   });
